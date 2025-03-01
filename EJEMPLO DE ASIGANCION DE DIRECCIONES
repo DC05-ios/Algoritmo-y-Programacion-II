@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int x = 42;
+    int *ptr = &x;
+
+    printf ("Valor de x: %d\n", x);
+    printf ("Valor al que apunta ptr: %d\n", *ptr);
+
+    *ptr = 100; // modificamos el valor de x a través del puntero
+    printf ("Nuevo valor de x: %d\n", x);
+
+
+    return 0;
+}
+
+EJEMPLO DE ASIGANCION DE DIRECCIONES
