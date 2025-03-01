@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int arr[5]= {10, 20, 30, 40, 50};
+    int *ptr = arr; // ptr apunta al primer elemento del arreglo
+
+    printf ("Primer elemento: %d\n", *ptr);
+    ptr++; // Movemos el puntero al siguiente elemento del arreglo
+    printf ("Segundo elemento: %d\n", *ptr);
+    ptr++; // Movemos el puntero dos posiciones adelante
+    printf ("Cuarto elemento: %d\n", *ptr);
+
+    return 0;
+}
+
+ EJEMPLO DE ARITMETICA DE PUNTEROS
