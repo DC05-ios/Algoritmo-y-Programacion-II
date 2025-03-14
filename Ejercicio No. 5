@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+     // Declaración del arreglo
+     int valores[] = {10, 20, 30, 40};
+
+     // Declaración de punteros
+
+     int *p1 = valores;
+     // p1 apunta al primer elemento del arreglo
+
+     int *p2 = valores + 3;
+     // p2 apunta al cuarto elemento del arreglo
+
+     // Comparaciones
+
+    printf("a) p1 == p2: %s\n", p1 == p2 ? "Verdadero" : "Falso");
+    printf("b) p1 < p2: %s\n", p1 < p2 ? "Verdadero" : "Falso");
+    printf("c) p1 >= (valores + 4): %s\n", p1 >= (valores + 4) ? "Verdadero" : "Falso");
+
+    return 0;
+
+     }
