@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdio.h>
+
+int main() {
+    int y = 5;
+    int *ptr = &y;
+
+    // Cambiar el valor de y a 20 usando ptr
+
+    *ptr = 20;
+
+     // Imprimir el valor de y para verificar el cambio
+     printf("El valor de y es: %d\n", y);
+
+      return 0; }
