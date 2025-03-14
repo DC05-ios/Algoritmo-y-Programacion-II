@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+    float *p = (float *)0x1000;
+    float *q = p + 3;
+
+    printf("Direccion inicial de p: %p\n", (void *)p);
+    printf("Direccion de p + 3: %p\n", (void *)q);
+
+    return 0; }
