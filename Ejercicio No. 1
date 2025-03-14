@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdio.h>
+
+int main() {
+    int x = 10; // Declaración de la variable entera x con valor 10
+    int *p = &x; // Declaración del puntero p que almacena la dirección de x
+
+    // Imprimir el valor de x y la dirección almacenada en p
+
+    printf("Valor de x: %d\n", x);
+    printf("Direccion de x: %p\n", (void *)p);
+
+    return 0; }
