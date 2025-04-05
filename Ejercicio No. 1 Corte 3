@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct {
+    char nombre[30];
+    float nota;
+} Alumno;
+
+#define NUM_ALUMNOS 3
+
+void guardarAlumnos(const char *filename) {
+    Alumno alumnos[NUM_ALUMNOS] = {
+        {"Isabel Carboni", 9.5},
+        {"Logan Bell", 6.2},
+        {"Benji Hattori", 5.8}
+    };
+
+    FILE *archivo = fopen(filename, "wb");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        exit(1);
+    }
+
+    fwrite(alumnos, sizeof(Alumno), NUM_ALUMNOS, archivo);
+    fclose(archivo);
+}
+
+void leerAlumnos(const char *filename) {
+    Alumno alumnos[NUM_ALUMNOS];
+    FILE *archivo = fopen(filename, "rb");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        exit(1);
+    }
+
+    fread(alumnos, sizeof(Alumno), NUM_ALUMNOS, archivo);
+    fclose(archivo);
+
+    printf("\nStudents List:\n");
+    for (int i = 0; i < NUM_ALUMNOS; i++) {
+        printf("Name: %s, Score: %.2f\n", alumnos[i].nombre, alumnos[i].nota);
+    }
+}
+
+int main() {
+    const char *filename = "alumnos.dat";
+
+    guardarAlumnos(filename);
+    leerAlumnos(filename);
+
+    return 0;
+}
