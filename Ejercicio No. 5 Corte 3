@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef struct {
+    char nombre[100];
+    int edad;
+    float promedio;
+} Alumno;
+
+#define NUM_ALUMNOS 3
+
+void guardarAlumnos(const char *filename) {
+    Alumno alumnos[NUM_ALUMNOS] = {
+        {"Jade Tanko", 17, 16.5},
+        {"Alessio Castelli", 26, 19.6},
+        {"Spencer Lawrence", 19, 20.0}
+    };
+
+    FILE *archivo = fopen(filename, "wb");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        exit(1);
+    }
+
+    fwrite(alumnos, sizeof(Alumno), NUM_ALUMNOS, archivo);
+    fclose(archivo);
+}
+
+void leerAlumnos(const char *filename) {
+    Alumno alumnos[NUM_ALUMNOS];
+    FILE *archivo = fopen(filename, "rb");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        exit(1);
+    }
+
+    fread(alumnos, sizeof(Alumno), NUM_ALUMNOS, archivo);
+    fclose(archivo);
+
+    printf("\nStudent List:\n");
+    for (int i = 0; i < NUM_ALUMNOS; i++) {
+       printf("Name: %s, Age: %d, Average: %.2f\n", alumnos[i].nombre, alumnos[i].edad, alumnos[i].promedio);
+    }
+}
+
+void buscarAlumno(const char *filename, const char *nombreBuscado) {
+    Alumno alumno;
+    FILE *archivo = fopen(filename, "rb");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        exit(1);
+    }
+
+    int encontrado = 0;
+    while (fread(&alumno, sizeof(Alumno), 1, archivo)) {
+        if (strcmp(alumno.nombre, nombreBuscado) == 0) {
+            printf("\nAlumno encontrado:\n");
+            printf("Name: %s, Age: %d, Average: %.2f\n", alumno.nombre, alumno.edad, alumno.promedio);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(archivo);
+
+    if (!encontrado) {
+        printf("\nAlumno con nombre '%s' no encontrado.\n", nombreBuscado);
+    }
+}
+
+int main() {
+    const char *filename = "alumnos.dat";
+    char nombreBuscado[50];
+
+    guardarAlumnos(filename);
+    leerAlumnos(filename);
+
+    printf("\nIngrese el nombre del alumno a buscar: ");
+    fgets(nombreBuscado, 50, stdin);
+    nombreBuscado[strcspn(nombreBuscado, "\n")] = 0;
+
+    buscarAlumno(filename, nombreBuscado);
+
+    return 0;
+}
